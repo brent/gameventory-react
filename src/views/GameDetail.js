@@ -1,4 +1,5 @@
 import React from 'react';
+import BackButton from './BackButton';
 
 // TODO: this probably goes when the
 // state assignment below goes
@@ -24,6 +25,8 @@ function GameDetail(props) {
 
   return (
     <div className='gameDetail'>
+      <BackButton history={ props.history } />
+
       <img src={ gameCoverUrl } alt={ `${gameName} cover` } />
       <h1>{ gameName }</h1>
       <p className='gameSummary'>
