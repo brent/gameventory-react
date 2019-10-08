@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import GamesListContainer from '../containers/GamesListContainer';
 import GameDetail from '../views/GameDetail';
-import GameSearch from '../views/GameSearch';
+import GamesSearch from '../views/GamesSearch';
 
 function Index() {
   return (
@@ -11,7 +11,7 @@ function Index() {
       <Switch>
         <Route exact path='/' component={ GamesListContainer } />
         <Route path='/game' component={ GameDetail } />
-        <Route path='/search' component={ GameSearch } />
+        <Route path='/search' component={ GamesSearch } />
       </Switch>
     </BrowserRouter>
   );
