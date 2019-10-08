@@ -1,11 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import './App.css';
 import Index from './routes/Index';
 
 function App() {
-  return(
+  return (
     <div className='app'>
-      <Index />
+      <Index> 
+        <div className='appNav'>
+          <ul className='appNav__links'>
+            <li><Link to='/'>Home</Link></li>
+            <li><Link to='/search'>Search</Link></li>
+          </ul>
+        </div>
+      </Index>
     </div>
   );
 }

@@ -5,9 +5,12 @@ import GamesListContainer from '../containers/GamesListContainer';
 import GameDetail from '../views/GameDetail';
 import GamesSearch from '../views/GamesSearch';
 
-function Index() {
+function Index(props) {
   return (
     <BrowserRouter>
+      <div>
+        { props.children }
+      </div>
       <Switch>
         <Route exact path='/' component={ GamesListContainer } />
         <Route path='/game' component={ GameDetail } />
