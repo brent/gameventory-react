@@ -10,7 +10,7 @@ function App() {
       <Index> 
         <div className='appNav'>
           <ul className='appNav__links'>
-            <li><Link to='/'>Home</Link></li>
+            <li><Link to='/'>Profile</Link></li>
             <li><Link to='/search'>Search</Link></li>
           </ul>
         </div>

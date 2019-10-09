@@ -4,14 +4,11 @@ import BackButton from './BackButton';
 // TODO: this probably goes when the
 // state assignment below goes
 function renderTags(tags) {
-  return tags.map(tag => {
-    return (
-      <li 
-        key={ tag.tagId } 
-        className='gameTag'
-      >{ tag.tagName }</li>
-    );
-  });
+  return tags.map(tag => (
+    <li key={ tag.id } className='gameTag'>
+      { tag.tag_name }
+    </li>
+  ));
 }
 
 function GameDetail(props) {

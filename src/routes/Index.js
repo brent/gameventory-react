@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import GamesListContainer from '../containers/GamesListContainer';
+import Profile from '../views/Profile';
 import GameDetail from '../views/GameDetail';
 import GamesSearch from '../views/GamesSearch';
 
@@ -12,7 +12,7 @@ function Index(props) {
         { props.children }
       </div>
       <Switch>
-        <Route exact path='/' component={ GamesListContainer } />
+        <Route exact path='/' component={ Profile } />
         <Route path='/game' component={ GameDetail } />
         <Route path='/search' component={ GamesSearch } />
       </Switch>
