@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import Profile from '../views/Profile';
-import GameDetail from '../views/GameDetail';
-import GamesSearch from '../views/GamesSearch';
+import Profile from '../components/Profile';
+import GameDetail from '../components/GameDetail';
+import GamesSearch from '../components/GamesSearch';
 
 function Index(props) {
   return (
