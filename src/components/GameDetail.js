@@ -34,6 +34,19 @@ function GameDetail(props) {
     );
   }
 
+  function renderAddGameButton() {
+    const userGames = JSON.parse(localStorage.getItem('games'));
+    const result = userGames.filter(game => game.id === gameID);
+
+    if (result.length === 1) return;
+
+    return (
+      <div className='gameAdd'>
+        <button className='gameAdd__cta' onClick={ handleAddGamePress }>Add game</button>
+      </div>
+    );
+  }
+
   function handleAddGamePress(e) {
     let params = new URLSearchParams();
     const accessToken = localStorage.getItem('access');
@@ -68,9 +81,7 @@ function GameDetail(props) {
         { gameSummary }
       </p>
       { renderTags(gameTags) }
-      <div className='gameAdd'>
-        <button className='gameAdd__cta' onClick={ handleAddGamePress }>Add game</button>
-      </div>
+      { renderAddGameButton() }
     </div>
   );
 }
