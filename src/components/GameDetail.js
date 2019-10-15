@@ -1,19 +1,10 @@
 import React from 'react';
 import BackButton from './BackButton';
-
-// TODO: this probably goes when the
-// state assignment below goes
-function renderTags(tags) {
-  return tags.map(tag => (
-    <li key={ tag.id } className='gameTag'>
-      { tag.tag_name }
-    </li>
-  ));
-}
+import axios from 'axios';
 
 function GameDetail(props) {
-  // TODO: move this out of component
   const {
+    gameID,
     gameName,
     gameCoverUrl,
     gameTags,

@@ -7,10 +7,19 @@ function Profile(props) {
   const [games, setGames] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/v1/users/e086b36f-ecf2-4017-a9a0-f1e4559efc4b/games')
-      .then(response => response.data)
-      .then(res => setGames(res.data))
-      .catch(err => console.log(err));
+    const accessToken = localStorage.getItem('access');
+    const userID = JSON.parse(localStorage.getItem('user')).id;
+
+    axios({
+      method: 'GET',
+      url: `http://localhost:3000/api/v1/users/${userID}/games`,
+      params: {
+        'auth': accessToken,
+      }
+    })
+    .then(response => response.data)
+    .then(res => setGames(res.data))
+    .catch(err => console.log(err));
   }, []);
 
   return (

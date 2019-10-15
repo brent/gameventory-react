@@ -12,6 +12,7 @@ function App() {
           <ul className='appNav__links'>
             <li><Link to='/'>Profile</Link></li>
             <li><Link to='/search'>Search</Link></li>
+            <li><Link to='/login'>Log in</Link></li>
           </ul>
         </div>
       </Index>

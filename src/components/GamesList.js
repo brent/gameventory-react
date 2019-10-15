@@ -11,6 +11,7 @@ function renderGames(games) {
         <Link key={ game.id } to={{
           pathname: '/game',
           state: {
+            gameID: game.id,
             gameName: game.igdb_name,
             gameCoverUrl: igdbCoverImgSrcForId(game.igdb_cover_img_id),
             gameTags: game.tags || [],

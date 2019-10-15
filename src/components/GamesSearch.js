@@ -13,7 +13,9 @@ function GamesSearch(props) {
 
   function handleSearchBarSubmit(e) {
     let params = new URLSearchParams();
+    const accessToken = localStorage.getItem('access');
     params.append('gameName', searchVal);
+    params.append('auth', accessToken);
 
     axios({
       method: 'post',
