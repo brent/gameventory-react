@@ -7,11 +7,20 @@ function renderTags(tags) {
       tags.length === 0)
     return null;
 
-  return tags.map(tag => (
+  const tagsList = tags.map(tag => (
     <li key={ tag.id } className="tag">
       { tag.tag_name }
     </li>
   ));
+
+  return (
+    tagsList.length > 0
+    ? (
+      <ul className='gameTags'>
+        { tagsList }
+      </ul>
+    ) : false
+  );
 }
 
 function GameListItem(props) {
@@ -22,9 +31,7 @@ function GameListItem(props) {
         alt={ props.game.igdb_name + ' cover image' }
       />
       <p>{ props.game.igdb_name }</p>
-      <ul className="tags">
-        { renderTags(props.game.tags) }
-      </ul>
+      { renderTags(props.game.tags) }
     </li>
   );
 }
