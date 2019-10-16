@@ -5,6 +5,7 @@ import Profile from '../components/Profile';
 import GameDetail from '../components/GameDetail';
 import GamesSearch from '../components/GamesSearch';
 import Login from '../components/Login';
+import PrivateRoute from '../PrivateRoute';
 
 function Index(props) {
   return (
@@ -13,10 +14,10 @@ function Index(props) {
         { props.children }
       </div>
       <Switch>
-        <Route exact path='/' component={ Profile } />
+        <PrivateRoute exact path='/' component={ Profile } />
         <Route path='/login' component={ Login } />
-        <Route path='/game' component={ GameDetail } />
-        <Route path='/search' component={ GamesSearch } />
+        <PrivateRoute path='/game' component={ GameDetail } />
+        <PrivateRoute path='/search' component={ GamesSearch } />
       </Switch>
     </BrowserRouter>
   );
