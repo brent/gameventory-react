@@ -5,6 +5,8 @@ import Profile from '../components/Profile';
 import GameDetail from '../components/GameDetail';
 import GamesSearch from '../components/GamesSearch';
 import Login from '../components/Login';
+import Logout from '../components/Logout';
+
 import PrivateRoute from '../PrivateRoute';
 
 function Index(props) {
@@ -18,6 +20,7 @@ function Index(props) {
         <Route path='/login' component={ Login } />
         <PrivateRoute path='/game' component={ GameDetail } />
         <PrivateRoute path='/search' component={ GamesSearch } />
+        <PrivateRoute path='/logout' component={ Logout } />
       </Switch>
     </BrowserRouter>
   );

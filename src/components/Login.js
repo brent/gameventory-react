@@ -5,7 +5,12 @@ import axios from 'axios';
 function Login(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    if (localStorage.getItem('refresh')) {
+      return true;
+    }
+    return false;
+  });
 
   function handleUsernameChange(e) {
     const username = e.target.value;
