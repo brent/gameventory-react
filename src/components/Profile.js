@@ -4,13 +4,51 @@ import axios from 'axios';
 import GamesList from './GamesList';
 
 function Profile(props) {
-  const [games, setGames] = useState([]);
+  const localGames = JSON.parse(localStorage.getItem('games')) || [];
+  const [games, setGames] = useState(localGames);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/v1/users/e086b36f-ecf2-4017-a9a0-f1e4559efc4b/games')
-      .then(response => response.data)
-      .then(res => setGames(res.data))
-      .catch(err => console.log(err));
+    const accessToken = localStorage.getItem('access');
+    const userID = JSON.parse(localStorage.getItem('user')).id;
+
+    axios({
+      method: 'GET',
+      url: `http://localhost:3000/api/v1/users/${userID}/games`,
+      params: {
+        'auth': accessToken,
+      }
+    })
+    .then(response => response.data)
+    .then(res => {
+      localStorage.setItem('games', JSON.stringify(res.data));
+      setGames(res.data);
+    })
+    .catch(err => {
+      const res = err.response.data.error;
+      if (res.statusCode === 403) {
+
+        const refreshToken = localStorage.getItem('refresh');
+        let params = new URLSearchParams();
+        params.append('refreshToken', refreshToken);
+
+        axios({
+          method: 'POST',
+          baseURL: 'http://localhost:3000/api/v1/',
+          url: '/auth/token',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          data: params
+        })
+        .then(response => response.data)
+        .then(res => {
+          localStorage.setItem('access', res.data.token);
+        })
+        .catch(err => console.log(err));
+
+      }
+      console.log(err.response);
+    });
   }, []);
 
   return (
