@@ -1,6 +1,6 @@
 import React from 'react';
 import BackButton from './BackButton';
-import axios from 'axios';
+import API from '../api';
 
 function GameDetail(props) {
   const {
@@ -48,6 +48,7 @@ function GameDetail(props) {
   }
 
   function handleAddGamePress(e) {
+
     let params = new URLSearchParams();
     const accessToken = localStorage.getItem('access');
     const user = JSON.parse(localStorage.getItem('user'));
@@ -55,18 +56,9 @@ function GameDetail(props) {
     params.append('gameID', gameID);
     params.append('auth', accessToken);
 
-    axios({
-      method: 'post',
-      baseURL: 'http://localhost:3000/api/v1/',
-      url: '/users/games/',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      data: params
-    })
-    .then(response => response.data)
-    .then(res => console.log('GAME ADDED'))
-    .catch(err => console.log(err));
+    API.addGameToUser(params)
+      .then(res => console.log('game added'))
+      .catch(err => console.log(err));;
 
     e.preventDefault();
   }
