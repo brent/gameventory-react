@@ -25,7 +25,6 @@ axios.interceptors.response.use((response) => {
       headers: POST_HEADERS,
       data: params
     })
-    .then(response => response.data)
     .then(res => {
       localStorage.setItem('access', res.data.token);
     })
@@ -46,13 +45,8 @@ export default class API {
           'auth': token,
         }
       })
-      .then(response => response.data)
-      .then(res => {
-        resolve(res.data);
-      })
-      .catch(err => {
-        reject(err);
-      });
+      .then(res => resolve(res.data))
+      .catch(err => reject(err));
     });
   }
 
@@ -65,8 +59,7 @@ export default class API {
         headers: POST_HEADERS,
         data: params
       })
-        .then(response => response.data)
-        .then(res => resolve(true))
+        .then(res => res.data)
         .catch(err => reject(new Error('failed to add game')));
     });
   }
@@ -80,8 +73,7 @@ export default class API {
         headers: POST_HEADERS,
         data: params
       })
-      .then(response => response.data)
-      .then(res => resolve(res.data))
+      .then(res => res.data)
       .catch(err => reject(err));
     });
   }
