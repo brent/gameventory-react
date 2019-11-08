@@ -24,9 +24,7 @@ function GamesSearch(props) {
       })
       .catch((err) => console.log(err));
 
-
     e.preventDefault();
-
   }
 
   return (

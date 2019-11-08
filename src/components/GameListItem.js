@@ -27,10 +27,10 @@ function GameListItem(props) {
   return (
     <li>
       <img
-        src={ igdbCoverImgSrcForId(props.game.igdb_cover_img_id) }
-        alt={ props.game.igdb_name + ' cover image' }
+        src={ igdbCoverImgSrcForId(props.game.coverImgID) }
+        alt={ props.game.name + ' cover image' }
       />
-      <p>{ props.game.igdb_name }</p>
+      <p>{ props.game.name }</p>
       { renderTags(props.game.tags) }
     </li>
   );

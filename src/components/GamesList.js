@@ -12,10 +12,10 @@ function renderGames(games) {
           pathname: '/game',
           state: {
             gameID: game.id,
-            gameName: game.igdb_name,
-            gameCoverUrl: igdbCoverImgSrcForId(game.igdb_cover_img_id),
+            gameName: game.name,
+            gameCoverUrl: igdbCoverImgSrcForId(game.coverImgID),
             gameTags: game.tags || [],
-            gameSummary: game.igdb_summary,
+            gameSummary: game.summary,
           },
         }}>
           <GameListItem game={game} />

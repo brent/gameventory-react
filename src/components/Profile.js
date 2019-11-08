@@ -16,6 +16,7 @@ function Profile(props) {
       token: token,
     })
       .then((games) => {
+        console.log(games);
         localStorage.setItem('games', JSON.stringify(games));
         setGames(games);
       })

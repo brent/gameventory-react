@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import Game from '../models/Game';
+
 const BASE_URL = 'http://localhost:3000/api/v1/';
 const POST_HEADERS = {
   'Content-Type': 'application/x-www-form-urlencoded',
@@ -45,8 +47,24 @@ export default class API {
           'auth': token,
         }
       })
-      .then(res => resolve(res.data))
-      .catch(err => reject(err));
+        .then(res => {
+          let games = [];
+
+          res.data.forEach((game) => {
+            games.push(new Game({
+              id: game.id,
+              igdbID: game.igdb_id,
+              name: game.igdb_name,
+              coverImgID: game.igdb_cover_img_id,
+              summary: game.igdb_summary,
+              releaseDate: game.igdb_first_release_date,
+              tags: game.tags,
+            }));
+          });
+
+          resolve(games);
+        })
+        .catch(err => reject(err));
     });
   }
 
@@ -73,7 +91,7 @@ export default class API {
         headers: POST_HEADERS,
         data: params
       })
-      .then(res => res.data)
+      .then(res => resolve(res.data))
       .catch(err => reject(err));
     });
   }
@@ -87,8 +105,24 @@ export default class API {
         headers: POST_HEADERS,
         data: params
       })
-      .then(res => resolve(res.data))
-      .catch(err => reject(err));
+        .then(res => {
+          let games = [];
+
+          res.data.forEach((game) => {
+            games.push(new Game({
+              id: game.id,
+              igdbID: game.igdb_id,
+              name: game.igdb_name,
+              coverImgID: game.igdb_cover_img_id,
+              summary: game.igdb_summary,
+              releaseDate: game.igdb_first_release_date,
+              tags: game.tags,
+            }));
+          });
+
+          resolve(games);
+        })
+        .catch(err => reject(err));
     });
   }
 }
