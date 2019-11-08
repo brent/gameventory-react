@@ -57,7 +57,6 @@ function GameDetail(props) {
     params.append('auth', accessToken);
 
     API.addGameToUser(params)
-      .then(res => console.log('game added'))
       .catch(err => console.log(err));;
 
     e.preventDefault();

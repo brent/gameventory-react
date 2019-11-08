@@ -29,7 +29,6 @@ function Login(props) {
 
     API.logUserIn(params)
       .then((res) => {
-        console.log(res);
         const userData = JSON.stringify(res['user']);
         saveDataToLocalStorage('user', userData);
         saveDataToLocalStorage('access', res['access']);
