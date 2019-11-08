@@ -9,7 +9,7 @@ function renderTags(tags) {
 
   const tagsList = tags.map(tag => (
     <li key={ tag.id } className="tag">
-      { tag.tag_name }
+      { tag.name }
     </li>
   ));
 

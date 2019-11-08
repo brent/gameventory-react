@@ -19,7 +19,7 @@ function GameDetail(props) {
 
     const tagsList = tags.map(tag => (
       <li key={ tag.id } className='gameTag'>
-        { tag.tag_name }
+        { tag.name }
       </li>
     ));
 

@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import Game from '../models/Game';
+import Tag from '../models/Tag';
 
 const BASE_URL = 'http://localhost:3000/api/v1/';
 const POST_HEADERS = {
@@ -51,6 +52,17 @@ export default class API {
           let games = [];
 
           res.data.forEach((game) => {
+            let tags = [];
+
+            if (game.tags) {
+              game.tags.forEach((tag) => {
+                tags.push(new Tag({
+                  id: tag.id,
+                  name: tag.tag_name,
+                }));
+              });
+            }
+
             games.push(new Game({
               id: game.id,
               igdbID: game.igdb_id,
@@ -58,7 +70,7 @@ export default class API {
               coverImgID: game.igdb_cover_img_id,
               summary: game.igdb_summary,
               releaseDate: game.igdb_first_release_date,
-              tags: game.tags,
+              tags: tags,
             }));
           });
 
