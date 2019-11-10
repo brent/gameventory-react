@@ -3,8 +3,8 @@ import { Route, Redirect } from 'react-router-dom';
 
 const PrivateRoute = ({ component: Component, ...props }) => {
   function getAuthStatus() {
-    const refreshToken = localStorage.getItem('refresh');
-    if (refreshToken !== null) {
+    const accessToken = localStorage.getItem('access');
+    if (accessToken !== null) {
       return true;
     }
     return false;

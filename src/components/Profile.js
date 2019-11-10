@@ -8,12 +8,10 @@ function Profile(props) {
   const [games, setGames] = useState(localGames);
 
   useEffect(() => {
-    const token = localStorage.getItem('access');
     const userID = JSON.parse(localStorage.getItem('user')).id;
 
     API.getGamesForUser({
       userID: userID,
-      token: token,
     })
       .then((games) => {
         localStorage.setItem('games', JSON.stringify(games));
