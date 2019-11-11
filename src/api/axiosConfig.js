@@ -16,6 +16,7 @@ gvAxios.interceptors.request.use((request) => {
     }
 
     request.baseURL = BASE_URL;
+    request._retry = false;
     return request;
   }, (error) => {
     return Promise.reject(error);
@@ -28,7 +29,6 @@ gvAxios.interceptors.response.use((response) => {
   (error) => {
     const resErr = error.response.data.error;
     const originalReq = error.config;
-    originalReq._retry = false;
 
     if (resErr.statusCode === 401 && !originalReq._retry) {
       originalReq._retry = true;
