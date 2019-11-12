@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import API from '../api';
-
 import GamesList from './GamesList';
 
 function Profile(props) {

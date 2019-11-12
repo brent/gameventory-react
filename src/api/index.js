@@ -18,7 +18,7 @@ export default class API {
               game.tags.forEach((tag) => {
                 tags.push(new Tag({
                   id: tag.id,
-                  name: tag.tag_name,
+                  name: tag.name,
                 }));
               });
             }
@@ -79,6 +79,55 @@ export default class API {
           resolve(games);
         })
         .catch(err => reject(err));
+    });
+  }
+
+  static getListsForUser(params) {
+    const { userID } = params;
+
+    return new Promise((resolve, reject) => {
+      axios.get(`/users/${userID}/lists`)
+        .then((res) => {
+          resolve(res.data);
+        })
+        .catch((err) => reject(err));
+    });
+  }
+
+  static getGamesInListForUser(params) {
+    const { listID, userID } = params;
+
+    return new Promise((resolve, reject) => {
+      axios.get(`/users/${userID}/lists/${listID}`)
+        .then((res) => {
+          let games = [];
+
+          res.data.forEach((game) => {
+            let tags = [];
+
+            if (game.tags) {
+              game.tags.forEach((tag) => {
+                tags.push(new Tag({
+                  id: tag.id,
+                  name: tag.name,
+                }));
+              });
+            }
+
+            games.push(new Game({
+              id: game.id,
+              igdbID: game.igdb_id,
+              name: game.igdb_name,
+              coverImgID: game.igdb_cover_img_id,
+              summary: game.igdb_summary,
+              releaseDate: game.igdb_first_release_date,
+              tags: tags,
+            }));
+          });
+
+          resolve(games);
+        })
+        .catch((err) => reject(err));
     });
   }
 }
