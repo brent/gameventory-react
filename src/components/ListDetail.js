@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import BackButton from './BackButton';
 import API from '../api';
 import GamesList from './GamesList';
 
-function ListDetail({ match }) {
-  const listID = match.params['id'];
+function ListDetail(props) {
+  const listID = props.match.params['id'];
   const [list, setList] = useState({
     id: '',
     name: '',
@@ -30,6 +31,8 @@ function ListDetail({ match }) {
 
   return (
     <div className="listDetail">
+      <BackButton history={ props.history } />
+
       <h2>{ list.id }</h2>
       <GamesList games={ list.games } />
     </div>
