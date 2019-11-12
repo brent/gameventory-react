@@ -93,4 +93,30 @@ export default class API {
         .catch((err) => reject(err));
     });
   }
+
+  static getGamesInListForUser(params) {
+    const { listID, userID } = params;
+
+    return new Promise((resolve, reject) => {
+      axios.get(`/users/${userID}/lists/${listID}`)
+        .then((res) => {
+          let games = [];
+
+          res.data.forEach((game) => {
+            games.push(new Game({
+              id: game.id,
+              igdbID: game.igdb_id,
+              name: game.igdb_name,
+              coverImgID: game.igdb_cover_img_id,
+              summary: game.igdb_summary,
+              releaseDate: game.igdb_first_release_date,
+              tags: game.tags,
+            }));
+          });
+
+          resolve(games);
+        })
+        .catch((err) => reject(err));
+    });
+  }
 }
