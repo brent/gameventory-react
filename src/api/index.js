@@ -18,7 +18,7 @@ export default class API {
               game.tags.forEach((tag) => {
                 tags.push(new Tag({
                   id: tag.id,
-                  name: tag.tag_name,
+                  name: tag.name,
                 }));
               });
             }
@@ -103,6 +103,17 @@ export default class API {
           let games = [];
 
           res.data.forEach((game) => {
+            let tags = [];
+
+            if (game.tags) {
+              game.tags.forEach((tag) => {
+                tags.push(new Tag({
+                  id: tag.id,
+                  name: tag.name,
+                }));
+              });
+            }
+
             games.push(new Game({
               id: game.id,
               igdbID: game.igdb_id,
@@ -110,7 +121,7 @@ export default class API {
               coverImgID: game.igdb_cover_img_id,
               summary: game.igdb_summary,
               releaseDate: game.igdb_first_release_date,
-              tags: game.tags,
+              tags: tags,
             }));
           });
 

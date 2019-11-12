@@ -8,4 +8,36 @@ export default class Game {
     this.releaseDate = params.releaseDate;
     this.tags = params.tags;
   }
+
+  static buildFromJSON(json) {
+    const jsonObj = JSON.parse(json);
+
+    return new Game({
+      id: jsonObj.id,
+      igdbID: jsonObj.igdbID,
+      name: jsonObj.name,
+      coverImgID: jsonObj.coverImgID,
+      summary: jsonObj.summary,
+      releaseDate: jsonObj.releaseDate,
+      tags: jsonObj.tags,
+    });
+  }
+
+  static buildListFromJSON(json) {
+    let games = [];
+
+    JSON.parse(json).forEach((gameJSON) => {
+      games.push(new Game({
+        id: gameJSON.id,
+        igdbID: gameJSON.igdbID,
+        name: gameJSON.name,
+        coverImgID: gameJSON.coverImgID,
+        summary: gameJSON.summary,
+        releaseDate: gameJSON.releaseDate,
+        tags: gameJSON.tags,
+      }));
+    });
+
+    return games;
+  }
 }
