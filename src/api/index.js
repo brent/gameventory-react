@@ -94,7 +94,7 @@ export default class API {
     });
   }
 
-  static getGamesInListForUser(params) {
+  static getListForUser(params) {
     const { listID, userID } = params;
 
     return new Promise((resolve, reject) => {
@@ -102,7 +102,7 @@ export default class API {
         .then((res) => {
           let games = [];
 
-          res.data.forEach((game) => {
+          res.data.games.forEach((game) => {
             let tags = [];
 
             if (game.tags) {
@@ -125,7 +125,11 @@ export default class API {
             }));
           });
 
-          resolve(games);
+          resolve({
+            id: res.data.id,
+            name: res.data.name,
+            games: games,
+          });
         })
         .catch((err) => reject(err));
     });

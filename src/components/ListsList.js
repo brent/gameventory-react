@@ -31,9 +31,11 @@ function renderLists(lists) {
   if (lists.length > 0) {
     return lists.map((list) => {
       return (
-        <Link key={ list.id } to={ `/lists/${list.id}` }>
-          { list.name }
-        </Link>
+        <li key={ list.id }>
+          <Link to={ `/lists/${list.id}` }>
+            { list.name }
+          </Link>
+        </li>
       );
     });
   } else {

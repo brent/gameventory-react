@@ -14,15 +14,15 @@ function ListDetail(props) {
   useEffect(() => {
     const userID = JSON.parse(localStorage.getItem('user')).id;
 
-    API.getGamesInListForUser({
+    API.getListForUser({
       listID: listID,
       userID: userID,
     })
-      .then((games) => {
+      .then((listData) => {
         const list = {
-          id: listID,
-          name: '',
-          games: games,
+          id: listData.id,
+          name: listData.name,
+          games: listData.games,
         };
         setList(list);
       })
@@ -33,7 +33,7 @@ function ListDetail(props) {
     <div className="listDetail">
       <BackButton history={ props.history } />
 
-      <h2>{ list.id }</h2>
+      <h2>{ list.name }</h2>
       <GamesList games={ list.games } />
     </div>
   );
