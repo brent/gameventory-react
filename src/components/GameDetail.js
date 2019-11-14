@@ -1,6 +1,7 @@
 import React from 'react';
 import BackButton from './BackButton';
 import API from '../api';
+import localStorageService from '../localStorageService';
 
 function GameDetail(props) {
   const {
@@ -35,7 +36,7 @@ function GameDetail(props) {
   }
 
   function renderAddGameButton() {
-    const userGames = JSON.parse(localStorage.getItem('games'));
+    const userGames = localStorageService.getItem('games');
     const result = userGames.filter(game => game.id === gameID);
 
     if (result.length === 1) return;
@@ -51,7 +52,7 @@ function GameDetail(props) {
 
     let params = new URLSearchParams();
     const accessToken = localStorage.getItem('access');
-    const user = JSON.parse(localStorage.getItem('user'));
+    const user = localStorageService.getItem('user');
     params.append('userID', user.id);
     params.append('gameID', gameID);
     params.append('auth', accessToken);

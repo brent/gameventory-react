@@ -10,6 +10,8 @@ export default class Game {
   }
 
   static buildFromJSON(json) {
+    if (json === null || json === undefined) return;
+
     const jsonObj = JSON.parse(json);
 
     return new Game({
@@ -24,6 +26,8 @@ export default class Game {
   }
 
   static buildListFromJSON(json) {
+    if (json === null || json === undefined) return;
+
     let games = [];
 
     JSON.parse(json).forEach((gameJSON) => {

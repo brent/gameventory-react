@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import API from '../api';
 import GamesList from './GamesList';
+import localStorageService from '../localStorageService';
 
 function GamesSearch(props) {
-  const localGames = JSON.parse(localStorage.getItem('gamesSearch')) || [];
+  const localGames = localStorageService.getItem('gamesSearch') || [];
   const [games, setGames] = useState(localGames);
   const [searchVal, setSearchVal] = useState('');
 
@@ -19,7 +20,7 @@ function GamesSearch(props) {
 
     API.findGameByName(params)
       .then((games) => {
-        localStorage.setItem('gamesSearch', JSON.stringify(games));
+        localStorageService.setItem('gamesSearch', games);
         setGames(games);
       })
       .catch((err) => console.log(err));

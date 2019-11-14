@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import API from '../api';
 import GamesList from './GamesList';
+import localStorageService from '../localStorageService';
 
 function Profile(props) {
-  const localGames = JSON.parse(localStorage.getItem('games')) || [];
+  const localGames = localStorageService.getItem('games') || [];
   const [games, setGames] = useState(localGames);
 
   useEffect(() => {
@@ -13,7 +14,7 @@ function Profile(props) {
       userID: userID,
     })
       .then((games) => {
-        localStorage.setItem('games', JSON.stringify(games));
+        localStorageService.setItem('games', games);
         setGames(games);
       })
       .catch(err => console.log(err));
