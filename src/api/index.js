@@ -1,6 +1,7 @@
 import axios from './axiosConfig';
 import Game from '../models/Game';
 import Tag from '../models/Tag';
+import List from '../models/List';
 
 export default class API {
   static getGamesForUser(params) {
@@ -88,7 +89,18 @@ export default class API {
     return new Promise((resolve, reject) => {
       axios.get(`/users/${userID}/lists`)
         .then((res) => {
-          resolve(res.data);
+          const lists = [];
+
+          res.data.forEach((list) => {
+            lists.push(new List({
+              id: list.id,
+              name: list.name,
+              description: list.list_description,
+              games: list.games,
+            }));
+          });
+
+          resolve(lists);
         })
         .catch((err) => reject(err));
     });
@@ -125,11 +137,12 @@ export default class API {
             }));
           });
 
-          resolve({
+          resolve(new List({
             id: res.data.id,
             name: res.data.name,
+            description: res.data.list_description,
             games: games,
-          });
+          }));
         })
         .catch((err) => reject(err));
     });

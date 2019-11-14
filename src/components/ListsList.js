@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import API from '../api';
 import { Link } from 'react-router-dom';
+import localStorageService from '../localStorageService';
 
 function ListsList(props) {
   const localLists = JSON.parse(localStorage.getItem('lists')) || [];
@@ -11,7 +12,7 @@ function ListsList(props) {
 
     API.getListsForUser({ userID: userID })
       .then((lists) => {
-        localStorage.setItem('lists', JSON.stringify(lists));
+        localStorageService.setItem('lists', lists);
         setLists(lists);
       })
       .catch((err) => console.log(err));
@@ -33,7 +34,8 @@ function renderLists(lists) {
       return (
         <li key={ list.id }>
           <Link to={ `/lists/${list.id}` }>
-            { list.name }
+            <div>{ list.name }</div>
+            <div>{ list.description }</div>
           </Link>
         </li>
       );

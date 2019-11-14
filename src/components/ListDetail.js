@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import BackButton from './BackButton';
 import API from '../api';
 import GamesList from './GamesList';
+import localStorageService from '../localStorageService';
 
 function ListDetail(props) {
   const listID = props.match.params['id'];
@@ -12,18 +13,13 @@ function ListDetail(props) {
   });
 
   useEffect(() => {
-    const userID = JSON.parse(localStorage.getItem('user')).id;
+    const userID = localStorageService.getItem('user').id;
 
     API.getListForUser({
       listID: listID,
       userID: userID,
     })
-      .then((listData) => {
-        const list = {
-          id: listData.id,
-          name: listData.name,
-          games: listData.games,
-        };
+      .then((list) => {
         setList(list);
       })
       .catch((err) => console.log(err));
@@ -34,6 +30,7 @@ function ListDetail(props) {
       <BackButton history={ props.history } />
 
       <h2>{ list.name }</h2>
+      <h3>{ list.description }</h3>
       <GamesList games={ list.games } />
     </div>
   );
