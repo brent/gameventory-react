@@ -16,7 +16,7 @@ function ListDetail(props) {
     const userID = localStorageService.getItem('user').id;
 
     API.getListForUser({
-      listID: listID,
+      listRef: listID,
       userID: userID,
     })
       .then((list) => {

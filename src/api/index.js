@@ -107,10 +107,10 @@ export default class API {
   }
 
   static getListForUser(params) {
-    const { listID, userID } = params;
+    const { listRef, userID } = params;
 
     return new Promise((resolve, reject) => {
-      axios.get(`/users/${userID}/lists/${listID}`)
+      axios.get(`/users/${userID}/lists/${listRef}`)
         .then((res) => {
           let games = [];
 
