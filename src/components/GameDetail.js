@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BackButton from './BackButton';
-import API from '../api';
 import localStorageService from '../localStorageService';
+import ListsList from './ListsList';
+import API from '../api';
 
 function GameDetail(props) {
   const {
@@ -11,6 +12,9 @@ function GameDetail(props) {
     gameTags,
     gameSummary,
   } = props.location.state;
+
+  const [isListsListVisible, setIsListsListVisible] = useState(false);
+  const [lists, setLists] = useState([]);
 
   function renderTags(tags) {
     if (tags === undefined ||
@@ -38,28 +42,47 @@ function GameDetail(props) {
   function renderAddGameButton() {
     const userGames = localStorageService.getItem('games');
     const result = userGames.filter(game => game.id === gameID);
+    const userID = localStorageService.getItem('user').id;
 
     if (result.length === 1) return;
 
-    return (
-      <div className='gameAdd'>
-        <button className='gameAdd__cta' onClick={ handleAddGamePress }>Add game</button>
-      </div>
-    );
+    if (isListsListVisible) {
+      return <ListsList lists={ lists } onClick={ handleAddToListPress } />;
+    } else {
+      return (
+        <div className='gameAdd'>
+          <button className='gameAdd__cta' onClick={ handleAddGamePress }>Add game</button>
+        </div>
+      );
+    }
+  }
+
+  function handleAddToListPress(listID) {
+    const accessToken = localStorage.getItem('access');
+    const user = localStorageService.getItem('user');
+
+    API.addGameToUser({
+      userID: user.id,
+      gameID: gameID,
+    })
+      .then(API.addGameToListForUser({
+        userID: user.id,
+        gameID: gameID,
+        listID: listID,
+      }))
+      .catch((err) => console.log(err));
   }
 
   function handleAddGamePress(e) {
+    const userID = localStorageService.getItem('user').id;
 
-    let params = new URLSearchParams();
-    const accessToken = localStorage.getItem('access');
-    const user = localStorageService.getItem('user');
-    params.append('userID', user.id);
-    params.append('gameID', gameID);
-    params.append('auth', accessToken);
-
-    API.addGameToUser(params)
-      .catch(err => console.log(err));;
-
+    API.getListsForUser({ userID: userID })
+      .then((lists) => {
+        localStorageService.setItem('lists', lists);
+        setLists(lists);
+        setIsListsListVisible(true);
+      })
+      .catch((err) => console.log(err));
     e.preventDefault();
   }
 

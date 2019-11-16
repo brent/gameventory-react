@@ -41,9 +41,29 @@ export default class API {
     });
   }
 
-  static addGameToUser(params) {
+  static addGameToListForUser(params) {
+    const { userID, listID, gameID } = params;
+
+    let requestParams = new URLSearchParams();
+    requestParams.append('userID', userID);
+    requestParams.append('gameID', gameID);
+
     return new Promise((resolve, reject) => {
-      axios.post('/users/games/', params)
+      axios.patch(`/lists/${listID}`, requestParams)
+        .then((res) => res.data)
+        .catch((err) => reject(new Error('failed to add game to list')));
+    });
+  }
+
+  static addGameToUser(params) {
+    const { userID, gameID } = params;
+
+    let requestParams = new URLSearchParams();
+    requestParams.append('userID', userID);
+    requestParams.append('gameID', gameID);
+
+    return new Promise((resolve, reject) => {
+      axios.post('/users/games/', requestParams)
         .then(res => res.data)
         .catch(err => reject(new Error('failed to add game')));
     });
