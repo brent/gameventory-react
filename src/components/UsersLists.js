@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import API from '../api';
-import { Link } from 'react-router-dom';
 import localStorageService from '../localStorageService';
 import ListsList from './ListsList';
 

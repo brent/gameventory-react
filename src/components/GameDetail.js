@@ -42,7 +42,6 @@ function GameDetail(props) {
   function renderAddGameButton() {
     const userGames = localStorageService.getItem('games');
     const result = userGames.filter(game => game.id === gameID);
-    const userID = localStorageService.getItem('user').id;
 
     if (result.length === 1) return;
 
@@ -58,7 +57,6 @@ function GameDetail(props) {
   }
 
   function handleAddToListPress(listID) {
-    const accessToken = localStorage.getItem('access');
     const user = localStorageService.getItem('user');
 
     API.addGameToUser({

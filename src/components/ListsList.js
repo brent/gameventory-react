@@ -19,7 +19,7 @@ function ListsList(props) {
   }
 
   return (
-    <ul>
+    <ul className="listsList">
       { renderLists(lists) }
     </ul>
   );
