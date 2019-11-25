@@ -39,21 +39,44 @@ function GameDetail(props) {
     );
   }
 
-  function renderAddGameButton() {
-    const userGames = localStorageService.getItem('games');
-    const result = userGames.filter(game => game.id === gameID);
+  function renderAddOrMoveGameButton() {
+    const usersLists = localStorageService.getItem('lists');
+    let el, isGameOnList;
 
-    if (result.length === 1) return;
+    usersLists.forEach((list) => {
+      list['games'].forEach((game) => {
+        if (game.id === gameID) {
+          isGameOnList = true;
+        }
+      });
+    });
 
     if (isListsListVisible) {
-      return <ListsList lists={ lists } onClick={ handleAddToListPress } />;
+      if (isGameOnList) {
+        el = <ListsList lists={ lists } onClick={ handleMoveGameToListPress } />;
+      } else {
+        el = <ListsList lists={ lists } onClick={ handleAddToListPress } />;
+      }
     } else {
-      return (
-        <div className='gameAdd'>
-          <button className='gameAdd__cta' onClick={ handleAddGamePress }>Add game</button>
-        </div>
-      );
+      if (isGameOnList) {
+        el = <button onClick={ handleAddOrMoveGamePress }>Move game</button>;
+      } else {
+        el = <button onClick={ handleAddOrMoveGamePress }>Add game</button>;
+      }
     }
+
+    return el;
+  }
+
+  function handleMoveGameToListPress(listID) {
+    const user = localStorageService.getItem('user');
+
+    API.addGameToListForUser({
+      userID: user.id,
+      gameID: gameID,
+      listID: listID,
+    })
+      .catch((err) => console.log(err));
   }
 
   function handleAddToListPress(listID) {
@@ -71,7 +94,7 @@ function GameDetail(props) {
       .catch((err) => console.log(err));
   }
 
-  function handleAddGamePress(e) {
+  function handleAddOrMoveGamePress(e) {
     const userID = localStorageService.getItem('user').id;
 
     API.getListsForUser({ userID: userID })
@@ -94,7 +117,7 @@ function GameDetail(props) {
         { gameSummary }
       </p>
       { renderTags(gameTags) }
-      { renderAddGameButton() }
+      { renderAddOrMoveGameButton() }
     </div>
   );
 }

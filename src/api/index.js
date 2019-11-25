@@ -146,15 +146,7 @@ export default class API {
               });
             }
 
-            games.push(new Game({
-              id: game.id,
-              igdbID: game.igdb_id,
-              name: game.igdb_name,
-              coverImgID: game.igdb_cover_img_id,
-              summary: game.igdb_summary,
-              releaseDate: game.igdb_first_release_date,
-              tags: tags,
-            }));
+            games.push(game);
           });
 
           resolve(new List({
