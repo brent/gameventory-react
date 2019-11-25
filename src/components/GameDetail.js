@@ -3,6 +3,7 @@ import BackButton from './BackButton';
 import localStorageService from '../localStorageService';
 import ListsList from './ListsList';
 import API from '../api';
+import TagsList from './TagsList';
 
 function GameDetail(props) {
   const {
@@ -15,29 +16,6 @@ function GameDetail(props) {
 
   const [isListsListVisible, setIsListsListVisible] = useState(false);
   const [lists, setLists] = useState([]);
-
-  function renderTags(tags) {
-    if (tags === undefined ||
-        tags === null ||
-        tags.length === 0)
-      return null;
-
-    const tagsList = tags.map(tag => (
-      <li key={ tag.id } className='gameTag'>
-        { tag.name }
-      </li>
-    ));
-
-    return (
-      tagsList.length > 0
-      ? (
-          <ul className='gameTags'>
-            { tagsList }
-          </ul>
-      )
-      : false
-    );
-  }
 
   function renderAddOrMoveGameButton() {
     const usersLists = localStorageService.getItem('lists');
@@ -123,7 +101,7 @@ function GameDetail(props) {
       <p className='gameSummary'>
         { gameSummary }
       </p>
-      { renderTags(gameTags) }
+      <TagsList tags={ gameTags } />
       { renderAddOrMoveGameButton() }
     </div>
   );
