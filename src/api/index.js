@@ -159,4 +159,19 @@ export default class API {
         .catch((err) => reject(err));
     });
   }
+
+  static addTagToGameForUser(params) {
+    const { tagName, gameID, userID } = params;
+
+    let requestParams = new URLSearchParams();
+    requestParams.append('tagName', tagName);
+    requestParams.append('userID', userID);
+    requestParams.append('gameID', gameID);
+
+    return new Promise((resolve, reject) => {
+      axios.post('/tags', requestParams)
+        .then((res) => resolve(res.data))
+        .catch((err) => reject(err));
+    });
+  }
 }

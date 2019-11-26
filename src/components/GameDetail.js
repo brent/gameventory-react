@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import BackButton from './BackButton';
 import localStorageService from '../localStorageService';
 import ListsList from './ListsList';
 import API from '../api';
-import TagsList from './TagsList';
+import TagsEditor from './TagsEditor';
 
 function GameDetail(props) {
   const {
@@ -16,18 +16,22 @@ function GameDetail(props) {
 
   const [isListsListVisible, setIsListsListVisible] = useState(false);
   const [lists, setLists] = useState([]);
+  const [isGameOnList, setIsGameOnList] = useState(false);
 
-  function renderAddOrMoveGameButton() {
+  useEffect(() => {
     const usersLists = localStorageService.getItem('lists');
-    let el, isGameOnList;
 
     usersLists.forEach((list) => {
       list['games'].forEach((game) => {
         if (game.id === gameID) {
-          isGameOnList = true;
+          setIsGameOnList(true);
         }
       });
     });
+  }, [gameID]);
+
+  function renderAddOrMoveGameButton() {
+    let el
 
     if (isListsListVisible) {
       if (isGameOnList) {
@@ -101,7 +105,7 @@ function GameDetail(props) {
       <p className='gameSummary'>
         { gameSummary }
       </p>
-      <TagsList tags={ gameTags } />
+      { isGameOnList ? <TagsEditor tags={ gameTags } gameID={ gameID } /> : null }
       { renderAddOrMoveGameButton() }
     </div>
   );
