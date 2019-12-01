@@ -18,14 +18,10 @@ function UsersLists(props) {
       .catch((err) => console.log(err));
   }, []);
 
-  function navigateToDetail(listID) {
-    props.history.push(`/lists/${listID}`);
-  }
-
   return (
     <div className='listsList'>
       <h2>Lists</h2>
-      <ListsList lists={ lists } onClick={ navigateToDetail } />
+      <ListsList lists={ lists }/>
     </div>
   )
 }

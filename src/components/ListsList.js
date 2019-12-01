@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function ListsList(props) {
   const lists = props.lists;
@@ -7,9 +8,11 @@ function ListsList(props) {
     if (lists.length > 0) {
       return lists.map((list) => {
         return (
-          <li key={ list.id } onClick={ () => props.onClick(list.id) }>
-            <div>{ list.name }</div>
-            <div>{ list.description }</div>
+          <li key={ list.id }>
+            <Link to={`/lists/${list.id}`}>
+              <div>{ list.name }</div>
+              <div>{ list.description }</div>
+            </Link>
           </li>
         );
       });
