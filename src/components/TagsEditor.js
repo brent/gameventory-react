@@ -10,6 +10,8 @@ function TagsEditor(props) {
   const [tags, setTags] = useState(props.tags);
   const [newTag, setNewTag] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [tagSearchTimeout, setTagSearchTimeout] = useState(null);
+  const [tagSearchResults, setTagSearchResults] = useState([]);
 
   function renderButtonOrInput() {
     let buttonOrInput;
@@ -19,12 +21,15 @@ function TagsEditor(props) {
     } else {
       buttonOrInput = (
         <form onSubmit={ handleTagAddSubmit }>
-          <input
-            type="text"
-            name="newTag"
-            value={ newTag }
-            onChange={ handleTagAddChange }
-          />
+          <div>
+            <input
+              type="text"
+              name="newTag"
+              value={ newTag }
+              onChange={ handleTagAddChange }
+            />
+            { renderTagSearchResults(tagSearchResults) }
+          </div>
           <button type="submit">add</button>
           <button onClick={ handleDonePress }>done</button>
         </form>
@@ -32,6 +37,12 @@ function TagsEditor(props) {
     }
 
     return buttonOrInput;
+  }
+
+  function renderTagSearchResults(tags) {
+    if (newTag !== '' && tags.length > 0) {
+      return <TagsList tags={tags} onClick={ handleTagAddSubmit } ctaLabel="add" />;
+    }
   }
 
   function handleDonePress(e) {
@@ -44,19 +55,20 @@ function TagsEditor(props) {
     setIsTagInputVisible(true);
   }
 
-  function handleTagAddSubmit(e) {
+  function handleTagAddSubmit(e, tag=null) {
     e.preventDefault();
 
     if (!isLoading) {
       setIsLoading(true);
+      const tagName = tag ? tag.name : newTag;
       API.addTagToGameForUser({
-        tagName: newTag,
+        tagName: tagName,
         gameID: gameID,
         userID: userID,
       })
         .then((res) => {
           let newTags = tags;
-          newTags.push({ id: res.tag_id, name: newTag });
+          newTags.push({ id: res.tag_id, name: tagName });
           setTags(newTags);
 
           setNewTag('');
@@ -64,13 +76,29 @@ function TagsEditor(props) {
           setIsTagInputVisible(false);
         })
         .catch((err) => console.log(err));
-    } else {
-      console.log('debounced press');
     }
   }
 
   function handleTagAddChange(e) {
-    setNewTag(e.target.value);
+    const tagName = e.target.value;
+    setNewTag(tagName);
+    if (tagName === '') {
+      clearTimeout(tagSearchTimeout);
+      return;
+    } else {
+      if (tagSearchTimeout || tagSearchTimeout === null) {
+        clearTimeout(tagSearchTimeout);
+        setTagSearchTimeout(setTimeout(() => {
+          setIsLoading(true);
+          API.searchForTagByName({ tagName: tagName })
+            .then((res) => {
+              setIsLoading(false);
+              setTagSearchResults(res);
+            })
+            .catch((err) => console.log(err));
+        }, 500));
+      }
+    }
   }
 
   function handleTagRemovePress(e, tag) {
@@ -85,7 +113,7 @@ function TagsEditor(props) {
         .then((res) => {
           const newTags = tags.filter(t => t.id !== tag.id);
           setTags(newTags);
-          setIsLoading(false);
+        setIsLoading(false);
         })
         .catch((err) => console.log(err));
     }
@@ -93,7 +121,7 @@ function TagsEditor(props) {
 
   return (
     <div className="tagsEditor">
-      <TagsList tags={ tags } onClick={ handleTagRemovePress } />
+      <TagsList tags={ tags } onClick={ handleTagRemovePress } ctaLabel="remove" />
       { renderButtonOrInput() }
     </div>
   );
