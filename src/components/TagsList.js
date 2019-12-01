@@ -12,6 +12,10 @@ function TagsList(props) {
     const tagsList = tags.map(tag => (
       <li key={ tag.id } className='gameTag'>
         { tag.name }
+        { props.onClick
+            ? <button onClick={ (e) => props.onClick(e, tag) }> X </button>
+            : null
+        }
       </li>
     ));
 

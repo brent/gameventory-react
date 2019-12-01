@@ -19,7 +19,12 @@ function TagsEditor(props) {
     } else {
       buttonOrInput = (
         <form onSubmit={ handleTagAddSubmit }>
-          <input type="text" name="newTag" value={ newTag } onChange={ handleTagAddChange } />
+          <input
+            type="text"
+            name="newTag"
+            value={ newTag }
+            onChange={ handleTagAddChange }
+          />
           <button type="submit">add</button>
           <button onClick={ handleDonePress }>done</button>
         </form>
@@ -68,9 +73,27 @@ function TagsEditor(props) {
     setNewTag(e.target.value);
   }
 
+  function handleTagRemovePress(e, tag) {
+    e.preventDefault();
+
+    if (!isLoading) {
+      setIsLoading(true);
+      API.removeTagFromGameForUser({
+        tagID: tag.id,
+        gameID: gameID,
+      })
+        .then((res) => {
+          const newTags = tags.filter(t => t.id !== tag.id);
+          setTags(newTags);
+          setIsLoading(false);
+        })
+        .catch((err) => console.log(err));
+    }
+  }
+
   return (
     <div className="tagsEditor">
-      <TagsList tags={ props.tags } />
+      <TagsList tags={ tags } onClick={ handleTagRemovePress } />
       { renderButtonOrInput() }
     </div>
   );

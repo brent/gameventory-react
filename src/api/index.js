@@ -174,4 +174,17 @@ export default class API {
         .catch((err) => reject(err));
     });
   }
+
+  static removeTagFromGameForUser(params) {
+    const { tagID, gameID } = params;
+
+    let requestParams = new URLSearchParams();
+    requestParams.append('gameID', gameID);
+
+    return new Promise((resolve, reject) => {
+      axios.patch(`/tags/${tagID}`, requestParams)
+        .then((res) => resolve(res.data))
+        .catch((err) => reject(err));
+    });
+  }
 }
