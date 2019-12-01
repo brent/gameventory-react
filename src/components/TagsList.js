@@ -13,7 +13,7 @@ function TagsList(props) {
       <li key={ tag.id } className='gameTag'>
         { tag.name }
         { props.onClick
-            ? <button onClick={ (e) => props.onClick(e, tag) }> X </button>
+            ? <button onClick={ (e) => props.onClick(e, tag) }> { props.ctaLabel } </button>
             : null
         }
       </li>

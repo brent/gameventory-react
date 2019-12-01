@@ -187,4 +187,14 @@ export default class API {
         .catch((err) => reject(err));
     });
   }
+
+  static searchForTagByName(params) {
+    const { tagName } = params;
+
+    return new Promise((resolve, reject) => {
+      axios.get(`/tags/?q=${tagName}`)
+        .then((res) => resolve(res.data))
+        .catch((err) => reject(err));
+    });
+  }
 }
