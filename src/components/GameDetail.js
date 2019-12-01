@@ -57,6 +57,13 @@ function GameDetail(props) {
       } else {
         el = <ListsList lists={ lists } onClick={ handleAddToListPress } />;
       }
+
+      el = (
+        <div className="listsListWrapper">
+          { el }
+          <button onClick={ () => setIsListsListVisible(false) }>cancel</button>
+        </div>
+      );
     } else {
       if (isGameOnList) {
         el = <button onClick={ handleAddOrMoveGamePress }>Move game</button>;
