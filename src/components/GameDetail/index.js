@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import BackButton from './BackButton';
-import localStorageService from '../localStorageService';
-import ListsList from './ListsList';
-import API from '../api';
-import TagsEditor from './TagsEditor';
+import BackButton from '../BackButton';
+import localStorageService from '../../localStorageService';
+import ListsList from '../ListsList';
+import API from '../../api';
+import TagsEditor from '../TagsEditor';
 
 function GameDetail(props) {
   const {

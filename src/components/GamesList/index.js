@@ -1,7 +1,7 @@
 import React from 'react';
-import GameListItem from './GameListItem';
+import GameListItem from '../GameListItem';
 import { Link } from 'react-router-dom';
-import { igdbCoverImgSrcForId } from '../helpers';
+import { igdbCoverImgSrcForId } from '../../helpers';
 
 function renderGames(games) {
   if (games.length > 0) {

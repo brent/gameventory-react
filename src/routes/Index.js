@@ -14,9 +14,6 @@ import PrivateRoute from '../PrivateRoute';
 function Index(props) {
   return (
     <BrowserRouter>
-      <div>
-        { props.children }
-      </div>
       <Switch>
         <PrivateRoute exact path='/' component={ Profile } />
         <Route path='/login' component={ Login } />

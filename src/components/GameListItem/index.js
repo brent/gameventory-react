@@ -1,6 +1,6 @@
 import React from 'react';
-import { igdbCoverImgSrcForId } from '../helpers';
-import TagsList from './TagsList';
+import { igdbCoverImgSrcForId } from '../../helpers';
+import TagsList from '../TagsList';
 
 function GameListItem(props) {
   return (

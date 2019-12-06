@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import Navigation from './components/Navigation';
 
 const PrivateRoute = ({ component: Component, ...props }) => {
   function getAuthStatus() {
@@ -14,7 +15,12 @@ const PrivateRoute = ({ component: Component, ...props }) => {
     <Route { ...props }
       render={ innerProps =>
           getAuthStatus()
-            ? <Component { ...innerProps } />
+            ? (
+              <div>
+                <Navigation />
+                <Component { ...innerProps } />
+              </div>
+            )
             : <Redirect to="/login" />
       }
     />

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import API from '../api';
-import GamesList from './GamesList';
-import localStorageService from '../localStorageService';
+import API from '../../api';
+import GamesList from '../GamesList';
+import localStorageService from '../../localStorageService';
 
 function GamesSearch(props) {
   const localGames = localStorageService.getItem('gamesSearch') || [];

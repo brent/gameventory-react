@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import BackButton from './BackButton';
-import API from '../api';
-import GamesList from './GamesList';
-import localStorageService from '../localStorageService';
+import BackButton from '../BackButton';
+import API from '../../api';
+import GamesList from '../GamesList';
+import localStorageService from '../../localStorageService';
 
 function ListDetail(props) {
   const listID = props.match.params['id'];

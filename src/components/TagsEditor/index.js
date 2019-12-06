@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import TagsList from './TagsList';
-import API from '../api';
-import localStorageService from '../localStorageService';
+import TagsList from '../TagsList';
+import API from '../../api';
+import localStorageService from '../../localStorageService';
 
 function TagsEditor(props) {
   const gameID = props.gameID;

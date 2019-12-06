@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import API from '../api';
-import localStorageService from '../localStorageService';
-import ListsList from './ListsList';
+import API from '../../api';
+import localStorageService from '../../localStorageService';
+import ListsList from '../ListsList';
+import BackButton from '../BackButton';
 
 function UsersLists(props) {
   const localLists = JSON.parse(localStorage.getItem('lists')) || [];
@@ -20,6 +21,7 @@ function UsersLists(props) {
 
   return (
     <div className='listsList'>
+      <BackButton history={ props.history } />
       <h2>Lists</h2>
       <ListsList lists={ lists }/>
     </div>
