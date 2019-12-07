@@ -4,6 +4,7 @@ import GamesList from '../GamesList';
 import localStorageService from '../../localStorageService';
 import UserProfileHeader from '../UserProfileHeader';
 import { Link } from 'react-router-dom';
+import './index.css';
 
 function Profile(props) {
   const [playingList, setPlayingList] = useState();
@@ -23,10 +24,10 @@ function Profile(props) {
   }, []);
 
   return (
-    <div>
+    <div className='profile'>
       <UserProfileHeader user={ user }>
         <ul>
-          <li><Link to='/lists'>Lists</Link></li>
+          <li><Link to='/lists'>3 lists</Link></li>
         </ul>
       </UserProfileHeader>
       { renderPlayingListFromLists(playingList) }
@@ -38,10 +39,10 @@ function renderPlayingListFromLists(list) {
   return (
     <div>
       { typeof list !== 'undefined' ? (
-        <div>
-          <h2>{ list.name }</h2>
+        <>
+          <h2 className='listTitle'>{ list.name }</h2>
           <GamesList games={ list.games } />
-        </div>
+        </>
       ) : (
         <p>Loading...</p>
       )}

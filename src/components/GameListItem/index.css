@@ -1,0 +1,23 @@
+.gamesListItem {
+  display: flex;
+}
+
+.gamesListItem__coverImg--wrapper {
+  width: 3rem;
+  height: 3rem;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  margin-right: 1rem;
+}
+
+.gamesListItem__coverImg {
+  width: inherit;
+  object-fit: cover;
+}
+
+.gamesListItem__gameName {
+  color: #6260A0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}

@@ -4,12 +4,14 @@ import localStorageService from '../../localStorageService';
 import ListsList from '../ListsList';
 import API from '../../api';
 import TagsEditor from '../TagsEditor';
+import './index.css';
 
 function GameDetail(props) {
   const {
     gameID,
     gameName,
     gameCoverUrl,
+    /* gameHeroUrl, */
     gameTags,
     gameSummary,
   } = props.location.state;
@@ -41,16 +43,16 @@ function GameDetail(props) {
       }
 
       el = (
-        <div className="listsListWrapper">
+        <>
           { el }
-          <button onClick={ () => setIsListsListVisible(false) }>cancel</button>
-        </div>
+          <button className='button' onClick={ () => setIsListsListVisible(false) }>cancel</button>
+        </>
       );
     } else {
       if (isGameOnList) {
-        el = <button onClick={ handleAddOrMoveGamePress }>Move game</button>;
+        el = <button className='button' onClick={ handleAddOrMoveGamePress }>Move game</button>;
       } else {
-        el = <button onClick={ handleAddOrMoveGamePress }>Add game</button>;
+        el = <button className='button' onClick={ handleAddOrMoveGamePress }>Add game</button>;
       }
     }
 
@@ -98,14 +100,22 @@ function GameDetail(props) {
 
   return (
     <div className='gameDetail'>
-      <BackButton history={ props.history } />
-
-      <img src={ gameCoverUrl } alt={ `${gameName} cover` } />
-      <h1>{ gameName }</h1>
+      {/*
+      <div className='gameDetail__hero'>
+        <img src={ gameHeroUrl } alt={ `${gameName} hero` } />
+      </div>
+      */}
+      <BackButton history={ props.history } className='backButton' />
+      <div className='gameCoverAndName'>
+        <img src={ gameCoverUrl } alt={ `${gameName} cover` } className='gameCover' />
+        <h1 className='gameName'>{ gameName }</h1>
+      </div>
       <p className='gameSummary'>
         { gameSummary }
       </p>
-      { isGameOnList ? <TagsEditor tags={ gameTags } gameID={ gameID } /> : null }
+      <div className='gameDetail__tagsEditor'>
+        { isGameOnList ? <TagsEditor tags={ gameTags } gameID={ gameID } /> : null }
+      </div>
       { renderAddOrMoveGameButton() }
     </div>
   );

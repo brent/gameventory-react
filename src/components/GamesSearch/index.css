@@ -1,0 +1,16 @@
+.gamesSearch .searchBar {
+  position: fixed;
+  background: #fff;
+  bottom: 6rem; /* tab bar height + 1 rem */
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.33);
+  margin: 0 1rem;
+  padding: 1rem;
+  width: calc(100% - 2rem);
+}
+
+.gamesSearch .searchBar input {
+  border: none;
+  font-size: 1.5rem;
+  width: 100%;
+}

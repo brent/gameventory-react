@@ -1,0 +1,12 @@
+.profile {
+  margin-bottom: 5rem; /* height of nav */
+}
+
+.listTitle {
+  font-family: 'Rubik', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #BBBBBB;
+  letter-spacing: 0.125rem;
+  padding: 0 1rem;
+}

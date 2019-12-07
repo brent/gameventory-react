@@ -21,7 +21,7 @@ function Logout(props) {
     <div>
       {
         isLoggedIn
-          ? <button onClick={ handleLogOutPress }>Log out</button>
+          ? <button className='button' onClick={ handleLogOutPress }>Log out</button>
           : <Redirect to="/" />
       }
     </div>

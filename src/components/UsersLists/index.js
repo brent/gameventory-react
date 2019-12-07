@@ -3,6 +3,7 @@ import API from '../../api';
 import localStorageService from '../../localStorageService';
 import ListsList from '../ListsList';
 import BackButton from '../BackButton';
+import './index.css';
 
 function UsersLists(props) {
   const localLists = JSON.parse(localStorage.getItem('lists')) || [];
@@ -20,9 +21,9 @@ function UsersLists(props) {
   }, []);
 
   return (
-    <div className='listsList'>
+    <div className='usersLists'>
       <BackButton history={ props.history } />
-      <h2>Lists</h2>
+      <h2 className='listTitle'>Lists</h2>
       <ListsList lists={ lists }/>
     </div>
   )

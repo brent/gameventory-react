@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import TagsList from '../TagsList';
 import API from '../../api';
 import localStorageService from '../../localStorageService';
+import './index.css';
 
 function TagsEditor(props) {
   const gameID = props.gameID;
@@ -17,7 +18,7 @@ function TagsEditor(props) {
     let buttonOrInput;
 
     if (!isTagInputVisible) {
-      buttonOrInput = <button onClick={ handleAddTagButtonPress }>+ tag</button>;
+      buttonOrInput = <button className='button' onClick={ handleAddTagButtonPress }>+ tag</button>;
     } else {
       buttonOrInput = (
         <form onSubmit={ handleTagAddSubmit }>
@@ -30,8 +31,8 @@ function TagsEditor(props) {
             />
             { renderTagSearchResults(tagSearchResults) }
           </div>
-          <button type="submit">add</button>
-          <button onClick={ handleDonePress }>done</button>
+          <button className='button' type="submit">add</button>
+          <button className='button' onClick={ handleDonePress }>done</button>
         </form>
       );
     }

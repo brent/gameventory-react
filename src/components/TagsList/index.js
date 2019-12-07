@@ -1,4 +1,5 @@
 import React from 'react';
+import './index.css';
 
 function TagsList(props) {
   const tags = props.tags || null;
@@ -13,7 +14,7 @@ function TagsList(props) {
       <li key={ tag.id } className='gameTag'>
         { tag.name }
         { props.onClick
-            ? <button onClick={ (e) => props.onClick(e, tag) }> { props.ctaLabel } </button>
+            ? <button onClick={ (e) => props.onClick(e, tag) } className='button'> { props.ctaLabel } </button>
             : null
         }
       </li>
@@ -22,9 +23,12 @@ function TagsList(props) {
     return (
       tagsList.length > 0
       ? (
-          <ul className='gameTags'>
+        <div className='gameTags'>
+          <img className='gameTags__icon' src='tags-list-icon.svg' alt='' />
+          <ul className='gameTags__list'>
             { tagsList }
           </ul>
+        </div>
       )
       : false
     );

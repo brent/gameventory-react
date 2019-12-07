@@ -1,0 +1,51 @@
+.gameDetail {
+  height: inherit;
+  width: inherit;
+  padding: 0 1rem;
+}
+
+.gameDetail__hero {
+  height: 14.5265rem;
+  width: auto;
+}
+
+.gameDetail__hero img {
+  height: inherit;
+  width: inherit;
+}
+
+.backButton {
+  position: fixed;
+  bottom: 6rem; /* height of tab nav +1 rem */
+  left: 1rem;
+}
+
+.gameCoverAndName {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.gameCover {
+  width: 3.75rem;
+  height: auto;
+  border-radius: 0.25rem;
+  margin-right: 1rem;
+}
+
+.gameName {
+  color: #6260A0;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+
+.gameSummary {
+  color: #777777;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  margin-bottom: 2rem;
+}
+
+.gameDetail__tagsEditor {
+  margin-bottom: 2rem;
+}

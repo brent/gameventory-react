@@ -1,0 +1,22 @@
+.gameTags {
+  display: flex;
+  align-items: flex-start;
+}
+
+.gameTags__icon {
+  margin-right: 0.5rem;
+  position: relative;
+  top: 0.25rem;
+}
+
+.gameTag {
+  color: #999999;
+  display: inline-block;
+  font-size: 1.125rem;
+  font-style: italic;
+  margin: 0 0.5rem 0.25rem 0;
+}
+
+.gameTag:last-child {
+  margin-right: 0;
+}

@@ -1,0 +1,14 @@
+.gamesList {
+  padding: 0 1rem;
+}
+
+.gamesList__list > a {
+  display: block;
+  border-bottom: 1px solid #eee;
+  padding: 1rem 0;
+}
+
+.gamesList__list > a:last-child {
+  border: none;
+  margin: none;
+}

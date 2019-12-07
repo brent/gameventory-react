@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import API from '../../api';
 import GamesList from '../GamesList';
 import localStorageService from '../../localStorageService';
+import './index.css';
 
 function GamesSearch(props) {
   const localGames = localStorageService.getItem('gamesSearch') || [];
@@ -31,7 +32,7 @@ function GamesSearch(props) {
   return (
     <div className='gamesSearch' onSubmit={ handleSearchBarSubmit }>
       <form className='searchBar'>
-        <input type='text' value={ searchVal } onChange={ handleSearchBarChange } />
+        <input type='text' value={ searchVal } onChange={ handleSearchBarChange } placeholder='find a game' />
       </form>
       <GamesList games={games} />
     </div>

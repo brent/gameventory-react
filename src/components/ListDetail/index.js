@@ -3,6 +3,7 @@ import BackButton from '../BackButton';
 import API from '../../api';
 import GamesList from '../GamesList';
 import localStorageService from '../../localStorageService';
+import './index.css';
 
 function ListDetail(props) {
   const listID = props.match.params['id'];
@@ -29,7 +30,7 @@ function ListDetail(props) {
     <div className="listDetail">
       <BackButton history={ props.history } />
 
-      <h2>{ list.name }</h2>
+      <h2 className='listTitle'>{ list.name }</h2>
       <h3>{ list.description }</h3>
       <GamesList games={ list.games } />
     </div>

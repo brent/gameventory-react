@@ -1,7 +1,11 @@
 import React from 'react';
 import GameListItem from '../GameListItem';
 import { Link } from 'react-router-dom';
-import { igdbCoverImgSrcForId } from '../../helpers';
+import {
+  igdbCoverImgSrcForId,
+  igdbHeroImgSrcForId,
+} from '../../helpers';
+import './index.css';
 
 function renderGames(games) {
   if (games.length > 0) {
@@ -14,6 +18,7 @@ function renderGames(games) {
             gameID: game.id,
             gameName: game.name,
             gameCoverUrl: igdbCoverImgSrcForId(game.coverImgID),
+            gameHeroUrl: igdbHeroImgSrcForId(game.coverImgID),
             gameTags: game.tags || [],
             gameSummary: game.summary,
           },
@@ -30,7 +35,7 @@ function renderGames(games) {
 function GamesList(props) {
   return (
     <div className='gamesList'>
-      <ul>
+      <ul className='gamesList__list'>
         { renderGames(props.games) }
       </ul>
     </div>

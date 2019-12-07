@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import API from '../../api';
+import './index.css';
 
 function Login(props) {
   const [username, setUsername] = useState('');
@@ -49,11 +50,11 @@ function Login(props) {
     ? (<Redirect to="/" />)
     : (
       <div className='login'>
-        <h1>Login</h1>
+        <img className='logo' src='/app-icon.svg' alt='Gameventory logo' />
         <form className='login__form' onSubmit={ handleLoginSubmit }>
-          <input type='text' value={ username } onChange={ handleUsernameChange } />
-          <input type='password' value={ password } onChange={ handlePasswordChange } />
-          <button onClick={ handleLoginSubmit }>login</button>
+          <input type='text' value={ username } onChange={ handleUsernameChange } placeholder='Username' />
+          <input type='password' value={ password } onChange={ handlePasswordChange } placeholder='Password' />
+          <button onClick={ handleLoginSubmit }>Log in</button>
         </form>
       </div>
     )

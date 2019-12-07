@@ -1,0 +1,39 @@
+.userProfileHeader {
+  background: #24233B;
+  color: #fff;
+  padding: 3.5rem 1rem 1rem;
+  margin-bottom: 2rem;
+}
+
+.userProfileHeader__username--wrapper {
+  display: flex;
+  align-items: center;
+  justify-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.userProfileHeader__avatar {
+  display: block;
+  margin-right: 0.5rem;
+}
+
+.userProfileHeader__username {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.userProfileHeader__subNav {
+  margin-left: 3.25rem;
+}
+
+.userProfileHeader__subNav ul {
+  display: flex;
+}
+
+.userProfileHeader__subNav li a {
+  display: block;
+  background: #6260A0;
+  border-radius: 1.125rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+}
