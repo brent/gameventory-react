@@ -82,7 +82,7 @@ function TagsEditor(props) {
   }
 
   function handleTagAddChange(e) {
-    const tagName = e.target.value;
+    const tagName = e.target.value.toLowerCase();
     setNewTag(tagName);
     if (tagName === '') {
       clearTimeout(tagSearchTimeout);
