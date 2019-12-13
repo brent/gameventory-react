@@ -15,7 +15,6 @@ function GamesSearch(props) {
 
   function handleSearchBarSubmit(e) {
     let params = new URLSearchParams();
-    const accessToken = localStorage.getItem('access');
     params.append('gameName', searchVal);
 
     API.findGameByName(params)
