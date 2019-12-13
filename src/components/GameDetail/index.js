@@ -101,7 +101,7 @@ function GameDetail(props) {
   return (
     <div className='gameDetail'>
       <div className='gameDetail__hero'>
-        <img src={ gameCoverUrl } alt={ `${gameName} blurred hero image` } />
+        <img src={ gameCoverUrl } alt={ `${gameName} blurred hero` } />
       </div>
       <BackButton history={ props.history } className='backButton' />
       <div className='gameDetail--main'>
