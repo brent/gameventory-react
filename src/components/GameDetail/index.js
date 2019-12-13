@@ -100,23 +100,23 @@ function GameDetail(props) {
 
   return (
     <div className='gameDetail'>
-      {/*
       <div className='gameDetail__hero'>
-        <img src={ gameHeroUrl } alt={ `${gameName} hero` } />
+        <img src={ gameCoverUrl } alt={ `${gameName} blurred hero image` } />
       </div>
-      */}
       <BackButton history={ props.history } className='backButton' />
-      <div className='gameCoverAndName'>
-        <img src={ gameCoverUrl } alt={ `${gameName} cover` } className='gameCover' />
-        <h1 className='gameName'>{ gameName }</h1>
+      <div className='gameDetail--main'>
+        <div className='gameCoverAndName'>
+          <img src={ gameCoverUrl } alt={ `${gameName} cover` } className='gameCover' />
+          <h1 className='gameName'>{ gameName }</h1>
+        </div>
+        <p className='gameSummary'>
+          { gameSummary }
+        </p>
+        <div className='gameDetail__tagsEditor'>
+          { isGameOnList ? <TagsEditor tags={ gameTags } gameID={ gameID } /> : null }
+        </div>
+        { renderAddOrMoveGameButton() }
       </div>
-      <p className='gameSummary'>
-        { gameSummary }
-      </p>
-      <div className='gameDetail__tagsEditor'>
-        { isGameOnList ? <TagsEditor tags={ gameTags } gameID={ gameID } /> : null }
-      </div>
-      { renderAddOrMoveGameButton() }
     </div>
   );
 }

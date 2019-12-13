@@ -27,7 +27,7 @@ function ListDetail(props) {
   }, [listID]);
 
   return (
-    <div className="listDetail">
+    <div className='listDetail'>
       <BackButton history={ props.history } />
 
       <h2 className='listTitle'>{ list.name }</h2>

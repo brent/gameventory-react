@@ -1,7 +1,12 @@
+.gamesSearch {
+  margin-top: env(safe-area-inset-top);
+  min-height: 100%;
+}
+
 .gamesSearch .searchBar {
   position: fixed;
   background: #fff;
-  bottom: 6rem; /* tab bar height + 1 rem */
+  bottom: 7rem; /* tab bar height + 1 rem */
   border-radius: 0.5rem;
   box-shadow: 0 2px 8px rgba(0,0,0,0.33);
   margin: 0 1rem;
@@ -13,4 +18,5 @@
   border: none;
   font-size: 1.5rem;
   width: 100%;
+  outline: none;
 }

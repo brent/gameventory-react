@@ -71,7 +71,7 @@ export default class API {
 
   static logUserIn(params) {
     return new Promise((resolve, reject) => {
-      axios.post('http://localhost:3000/api/v1/auth/login', params)
+      axios.post('/auth/login', params)
         .then(res => resolve(res.data))
         .catch(err => {
           reject(new Error('failed to log in'))

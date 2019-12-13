@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
+import './index.css';
 
 function Logout(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -18,10 +19,10 @@ function Logout(props) {
   }
 
   return (
-    <div>
+    <div className='logout'>
       {
         isLoggedIn
-          ? <button className='button' onClick={ handleLogOutPress }>Log out</button>
+          ? <button className='logout__button' onClick={ handleLogOutPress }>Log out</button>
           : <Redirect to="/" />
       }
     </div>

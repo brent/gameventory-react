@@ -11,10 +11,14 @@ function TagsList(props) {
       return null;
 
     const tagsList = tags.map(tag => (
-      <li key={ tag.id } className='gameTag'>
+      <li 
+        key={ tag.id }
+        className={ props.onClick ? 'gameTagButton' : 'gameTag' }
+        onClick={ (e) => props.onClick(e, tag) }
+      >
         { tag.name }
         { props.onClick
-            ? <button onClick={ (e) => props.onClick(e, tag) } className='button'> { props.ctaLabel } </button>
+            ? <button className='gameTag__button'> { props.ctaLabel } </button>
             : null
         }
       </li>
@@ -24,7 +28,10 @@ function TagsList(props) {
       tagsList.length > 0
       ? (
         <div className='gameTags'>
-          <img className='gameTags__icon' src='tags-list-icon.svg' alt='' />
+          { props.onClick
+              ? null
+              : <img className='gameTags__icon' src='/tags-list-icon.svg' alt='' />
+          }
           <ul className='gameTags__list'>
             { tagsList }
           </ul>

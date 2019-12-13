@@ -1,5 +1,6 @@
 .gameTags {
   display: flex;
+  flex-direction: row;
   align-items: flex-start;
 }
 
@@ -9,14 +10,37 @@
   top: 0.25rem;
 }
 
+.gameTag,
+.gameTagButton {
+  display: inline-block;
+}
+
 .gameTag {
   color: #999999;
-  display: inline-block;
   font-size: 1.125rem;
   font-style: italic;
-  margin: 0 0.5rem 0.25rem 0;
+  margin: 0 1rem 0.25rem 0;
 }
 
 .gameTag:last-child {
+  margin-right: 0;
+}
+
+.gameTag__button {
+  font-size: 1rem;
+  border: none;
+  color: #6260A0;
+  padding: 0;
+  margin: 0;
+}
+
+.gameTagButton {
+  border: 1px solid #6260A0;
+  color: #6260A0;
+  padding: 0 0.5rem;
+  margin: 0 1rem 1rem 0;
+}
+
+.gameTagButton:last-child {
   margin-right: 0;
 }

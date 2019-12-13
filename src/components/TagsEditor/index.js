@@ -21,9 +21,10 @@ function TagsEditor(props) {
       buttonOrInput = <button className='button' onClick={ handleAddTagButtonPress }>+ tag</button>;
     } else {
       buttonOrInput = (
-        <form onSubmit={ handleTagAddSubmit }>
+        <form className='tagsEditorForm' onSubmit={ handleTagAddSubmit }>
           <div>
             <input
+              className='tagsEditorForm__input'
               type="text"
               name="newTag"
               value={ newTag }
@@ -42,7 +43,7 @@ function TagsEditor(props) {
 
   function renderTagSearchResults(tags) {
     if (newTag !== '' && tags.length > 0) {
-      return <TagsList tags={tags} onClick={ handleTagAddSubmit } ctaLabel="add" />;
+      return <TagsList className='tagsEditor__tagsList' tags={tags} onClick={ handleTagAddSubmit } ctaLabel='+' />;
     }
   }
 
@@ -122,7 +123,7 @@ function TagsEditor(props) {
 
   return (
     <div className="tagsEditor">
-      <TagsList tags={ tags } onClick={ handleTagRemovePress } ctaLabel="remove" />
+      <TagsList tags={ tags } onClick={ handleTagRemovePress } ctaLabel="✖" />
       { renderButtonOrInput() }
     </div>
   );

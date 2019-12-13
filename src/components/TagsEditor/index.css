@@ -1,0 +1,15 @@
+.tagsEditor {
+  width: 100%;
+}
+
+.tagsEditor__tagsList {
+  height: 100%;
+  width: 100%;
+  background: #ff00ff;
+}
+
+.tagsEditorForm__input {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  width: 100%;
+}

@@ -6,7 +6,7 @@ function UserProfileHeader(props) {
   const subNav = props.children;
 
   return (
-    <section className='userProfileHeader'>
+    <div className='userProfileHeader'>
       <div className='userProfileHeader__username--wrapper'>
         <img className='userProfileHeader__avatar' src='user-icon.svg' alt='user avatar' />
         <h2 className='userProfileHeader__username'>{ user.username }</h2>
@@ -14,7 +14,7 @@ function UserProfileHeader(props) {
       <div className='userProfileHeader__subNav'>
         { subNav }
       </div>
-    </section>
+    </div>
   );
 }
 

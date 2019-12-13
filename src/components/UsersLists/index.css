@@ -1,3 +1,7 @@
+.usersLists {
+  margin-top: env(safe-area-inset-top);
+}
+
 .usersLists > ul {
   padding: 0 1rem;
 }
