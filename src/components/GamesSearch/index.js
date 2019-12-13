@@ -10,14 +10,13 @@ function GamesSearch(props) {
   const [searchVal, setSearchVal] = useState('');
 
   function handleSearchBarChange(e) {
-    setSearchVal(e.target.value)
+    setSearchVal(e.target.value);
   }
 
   function handleSearchBarSubmit(e) {
     let params = new URLSearchParams();
     const accessToken = localStorage.getItem('access');
     params.append('gameName', searchVal);
-    params.append('auth', accessToken);
 
     API.findGameByName(params)
       .then((games) => {
